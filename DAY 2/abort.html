@@ -1,0 +1,57 @@
+<!DocType html>
+<html>
+
+<body>
+    <script>
+        let controller = new AbortController();
+        let signal = controller.signal;
+        // triggers when controller.abort() is called signal.addEventListener('abort', () => alert("abort!"));
+        controller.abort(); // abort!
+        alert(signal.aborted); // true (after abort)
+
+
+
+        // abort in 1 second
+        let controller = new AbortController();
+        setTimeout(() => controller.abort(), 1000);
+        try {
+        let response = await fetch('/article/fetch-abort/demo/hang', {
+        });
+        signal: controller.signal
+        } catch(err) {
+        if (err.name
+        'AbortError') { // handle abort()
+        alert("Aborted!");
+        } else {
+        throw err;
+        }
+        }
+
+
+        let urls = [...]; // a list of urls to fetch in parallel
+        let controller = new AbortController();
+        let fetchJobs = urls.map(url => fetch(url, {
+        signal: controller.signal
+        }));
+        let results = await Promise.all(fetchJobs);
+        // from elsewhere:
+        // controller.abort() stops all fetches
+
+
+
+        let urls = [...];
+        let controller = new AbortController();
+        let ourJob = new Promise((resolve, reject) => {
+        });
+        controller.signal.addEventListener('abort', reject);
+        let fetchJobs = urls.map(url => fetch(url, {
+        signal: controller.signal
+        }));
+        let results = await Promise.all([...fetchJobs, ourJob]);
+        // from elsewhere:
+        // controller.abort() stops all fetches and ourJob
+        
+    </script>
+</body>
+
+</html>
