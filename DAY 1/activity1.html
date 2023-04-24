@@ -1,0 +1,17 @@
+<!DocType html>
+<html>
+
+<body>
+    <input type="file" onchange="showFile(this)">
+
+    <script>
+        function showFile(input) {
+            let file = input.files[0];
+
+            alert(`File name: ${file.name}`); // e.g my.png
+            alert(`Last modified: ${file.lastmodified}`); //e.g 1552830408824
+        }
+    </script>
+</body>
+
+</html>

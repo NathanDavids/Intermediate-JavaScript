@@ -1,0 +1,19 @@
+<!DocType html>
+
+<html>
+
+<body>
+    <script>
+       let response = fetch('https://api.github.com/repos/javascript-tutorial/en.javascript/en.javascript.info/commits');
+if (response.ok) { // if HTTP-status is 200-299
+// get the response body (see below)
+let json = response.json();
+} else {
+}
+alert("HTTP-Error: " + response.status);
+
+
+        </script>
+</body>
+
+</html>
